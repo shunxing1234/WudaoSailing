@@ -28,13 +28,3 @@
 
 
 
-## 服务器账号
-
-- 119.3.178.138
-
-- 120.92.53.182
-- 120.92.54.30
-
-https://i6802jri0v.feishu.cn/drive/home/ 
-
-https://i6802jri0v.feishu.cn/docs/doccnOdWZtHtp0SowyRWB3QV7Id
