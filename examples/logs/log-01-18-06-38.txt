@@ -907,3 +907,9 @@ time (ms) | forward: 515.60 | backward: 1321.71 | optimizer: 112.10 | batch gene
 [2022-01-18 06:57:38,881] [INFO] [timer.py:181:stop] 0/600, SamplesPerSec=51.67576664205675
  iteration      600/250000000 | elapsed time per iteration (ms): 1881.5 | learning rate 2.910E-05 | lm loss 6.413561E+00 | loss scale 16384.0 |
 time (ms) | forward: 497.77 | backward: 1267.05 | optimizer: 114.38 | batch generator: 1.46 | data loader: 0.34
+ iteration      650/250000000 | elapsed time per iteration (ms): 1957.1 | learning rate 3.160E-05 | lm loss 6.314599E+00 | loss scale 16384.0 |
+time (ms) | forward: 517.45 | backward: 1324.45 | optimizer: 111.92 | batch generator: 1.68 | data loader: 0.37
+[2022-01-18 07:00:53,102] [INFO] [logging.py:69:log_dist] [Rank 0] step=700, skipped=18, lr=[3.405e-05, 3.405e-05], mom=[[0.9, 0.98], [0.9, 0.98]]
+[2022-01-18 07:00:53,126] [INFO] [timer.py:181:stop] 0/700, SamplesPerSec=51.349156718381735
+ iteration      700/250000000 | elapsed time per iteration (ms): 1927.8 | learning rate 3.410E-05 | lm loss 6.327565E+00 | loss scale 16384.0 |
+time (ms) | forward: 513.11 | backward: 1298.85 | optimizer: 114.79 | batch generator: 1.54 | data loader: 0.36
