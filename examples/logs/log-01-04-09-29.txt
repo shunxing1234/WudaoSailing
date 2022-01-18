@@ -1,0 +1,47 @@
+[2022-01-04 09:29:39,862] [INFO] [runner.py:327:main] Using IP address of 172.31.32.40 for node V100-3
+[2022-01-04 09:29:39,863] [INFO] [runner.py:398:main] cmd = /opt/conda/bin/python -u -m deepspeed.launcher.launch --world_info=eyJWMTAwLTMiOiBbMCwgMSwgMl19 --master_addr=172.31.32.40 --master_port=26516 pretrain_glm.py --block-lm --task-mask --bert-prob 0.4 --gap-sentence-prob 0.3 --avg-block-length 3 --gpt-min-ratio 0.25 --block-mask-prob 0.1 --short-seq-prob 0.02 --experiment-name blocklm-large-chinese --model-parallel-size 1 --num-layers 24 --hidden-size 1024 --num-attention-heads 16 --seq-length 512 --max-position-embeddings 1024 --save ../model_save/checkpoints/ --load ../model_save/checkpoints/ --log-interval 50 --eval-interval 1000 --save-interval 2000 --train-iters 250000000 --train-data wudao --resume-dataloader --loader-scatter 4 --no-lazy-loader --tokenizer-type ChineseSPTokenizer --fix-command-token --split 949,50,1 --distributed-backend nccl --lr-decay-style cosine --lr-decay-ratio 0.1 --lr-decay-iters 200000 --warmup 0.04 --checkpoint-activations --deepspeed-activation-checkpointing --fp16 --deepspeed --deepspeed_config ./config/config_block_large_chinese.json
+[2022-01-04 09:29:40,509] [INFO] [launch.py:73:main] 0 NCCL_DEBUG=info
+[2022-01-04 09:29:40,509] [INFO] [launch.py:73:main] 0 NCCL_NET_GDR_LEVEL=2
+[2022-01-04 09:29:40,509] [INFO] [launch.py:73:main] 0 NCCL_IB_DISABLE=0
+[2022-01-04 09:29:40,509] [INFO] [launch.py:73:main] 0 NV_LIBNCCL_DEV_PACKAGE=libnccl-dev=2.11.4-1+cuda10.2
+[2022-01-04 09:29:40,509] [INFO] [launch.py:73:main] 0 NCCL_INCLUDE_DIR=/usr/include
+[2022-01-04 09:29:40,509] [INFO] [launch.py:73:main] 0 NCCL_VERSION=2.11.4-1
+[2022-01-04 09:29:40,509] [INFO] [launch.py:73:main] 0 NV_LIBNCCL_DEV_VERSION=2.11.4-1
+[2022-01-04 09:29:40,509] [INFO] [launch.py:73:main] 0 NV_LIBNCCL_PACKAGE_VERSION=2.11.4-1
+[2022-01-04 09:29:40,509] [INFO] [launch.py:73:main] 0 NV_LIBNCCL_PACKAGE=libnccl2=2.11.4-1+cuda10.2
+[2022-01-04 09:29:40,509] [INFO] [launch.py:73:main] 0 NV_LIBNCCL_DEV_PACKAGE_NAME=libnccl-dev
+[2022-01-04 09:29:40,509] [INFO] [launch.py:73:main] 0 NV_LIBNCCL_PACKAGE_NAME=libnccl2
+[2022-01-04 09:29:40,509] [INFO] [launch.py:73:main] 0 NCCL_LIBRARY=/usr/lib/x86_64-linux-gnu
+[2022-01-04 09:29:40,509] [INFO] [launch.py:80:main] WORLD INFO DICT: {'V100-3': [0, 1, 2]}
+[2022-01-04 09:29:40,509] [INFO] [launch.py:86:main] nnodes=1, num_local_procs=3, node_rank=0
+[2022-01-04 09:29:40,509] [INFO] [launch.py:99:main] global_rank_mapping=defaultdict(<class 'list'>, {'V100-3': [0, 1, 2]})
+[2022-01-04 09:29:40,510] [INFO] [launch.py:100:main] dist_world_size=3
+[2022-01-04 09:29:40,510] [INFO] [launch.py:102:main] Setting CUDA_VISIBLE_DEVICES=0,1,2
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "pretrain_glm.py", line 29, in <module>
+  File "pretrain_glm.py", line 29, in <module>
+Traceback (most recent call last):
+  File "pretrain_glm.py", line 29, in <module>
+            from setup_model import setup_model_and_optimizerfrom setup_model import setup_model_and_optimizerfrom setup_model import setup_model_and_optimizer
+
+
+  File "/data/wang/glm/wudao/examples/glm/setup_model.py", line 8, in <module>
+  File "/data/wang/glm/wudao/examples/glm/setup_model.py", line 8, in <module>
+  File "/data/wang/glm/wudao/examples/glm/setup_model.py", line 8, in <module>
+    from train_utils.optimizers import get_optimizer_param_groups,get_optimizer
+  File "/data/wang/glm/wudao/train_utils/optimizers.py", line 5, in <module>
+    from train_utils.optimizers import get_optimizer_param_groups,get_optimizer    
+from train_utils.optimizers import get_optimizer_param_groups,get_optimizer  File "/data/wang/glm/wudao/train_utils/optimizers.py", line 5, in <module>
+
+  File "/data/wang/glm/wudao/train_utils/optimizers.py", line 5, in <module>
+        from model import glm_get_params_for_weight_decay_optimizationfrom model import glm_get_params_for_weight_decay_optimization
+
+ImportErrorImportError: : cannot import name 'glm_get_params_for_weight_decay_optimization' from 'model' (/data/wang/glm/wudao/model/__init__.py)cannot import name 'glm_get_params_for_weight_decay_optimization' from 'model' (/data/wang/glm/wudao/model/__init__.py)    
+
+from model import glm_get_params_for_weight_decay_optimization
+ImportError: cannot import name 'glm_get_params_for_weight_decay_optimization' from 'model' (/data/wang/glm/wudao/model/__init__.py)
+[2022-01-04 09:29:42,534] [INFO] [launch.py:131:sigkill_handler] Killing subprocess 16652
+[2022-01-04 09:29:42,535] [INFO] [launch.py:131:sigkill_handler] Killing subprocess 16653
+[2022-01-04 09:29:42,535] [INFO] [launch.py:131:sigkill_handler] Killing subprocess 16654
+[2022-01-04 09:29:42,535] [ERROR] [launch.py:137:sigkill_handler] ['/opt/conda/bin/python', '-u', 'pretrain_glm.py', '--local_rank=2', '--block-lm', '--task-mask', '--bert-prob', '0.4', '--gap-sentence-prob', '0.3', '--avg-block-length', '3', '--gpt-min-ratio', '0.25', '--block-mask-prob', '0.1', '--short-seq-prob', '0.02', '--experiment-name', 'blocklm-large-chinese', '--model-parallel-size', '1', '--num-layers', '24', '--hidden-size', '1024', '--num-attention-heads', '16', '--seq-length', '512', '--max-position-embeddings', '1024', '--save', '../model_save/checkpoints/', '--load', '../model_save/checkpoints/', '--log-interval', '50', '--eval-interval', '1000', '--save-interval', '2000', '--train-iters', '250000000', '--train-data', 'wudao', '--resume-dataloader', '--loader-scatter', '4', '--no-lazy-loader', '--tokenizer-type', 'ChineseSPTokenizer', '--fix-command-token', '--split', '949,50,1', '--distributed-backend', 'nccl', '--lr-decay-style', 'cosine', '--lr-decay-ratio', '0.1', '--lr-decay-iters', '200000', '--warmup', '0.04', '--checkpoint-activations', '--deepspeed-activation-checkpointing', '--fp16', '--deepspeed', '--deepspeed_config', './config/config_block_large_chinese.json'] exits with return code = 1

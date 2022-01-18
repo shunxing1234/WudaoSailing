@@ -1,0 +1,1 @@
+config/ds_pretrain_nvidia.sh: line 19: deepspeed: command not found

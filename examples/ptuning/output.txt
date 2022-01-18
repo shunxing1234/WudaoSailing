@@ -1,0 +1,24 @@
+acc:tensor(0.6842, device='cuda:0')
+----------
+acc:tensor(0.6776, device='cuda:0')
+----------
+acc:tensor(0.6382, device='cuda:0')
+----------
+acc:tensor(0.6842, device='cuda:0')
+----------
+acc:tensor(0.6908, device='cuda:0')
+----------
+acc:tensor(0.6776, device='cuda:0')
+----------
+acc:tensor(0.6776, device='cuda:0')
+----------
+acc:tensor(0.6645, device='cuda:0')
+----------
+acc:tensor(0.6579, device='cuda:0')
+----------
+acc:tensor(0.6711, device='cuda:0')
+----------
+acc:tensor(0.6184, device='cuda:0')
+----------
+acc:tensor(0.6842, device='cuda:0')
+----------

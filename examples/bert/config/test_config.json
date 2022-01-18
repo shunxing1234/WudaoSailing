@@ -1,0 +1,9 @@
+{
+  "total_steps": 1000000000,
+  "report_steps": 5,
+  "demo_ratio": 0.01,
+  "corpus_dir": "./data/train_data/corpus/",
+  "pt_dir": "./data/train_data/pre_data/",
+  "temp_dir": "./data/temp/",
+  "save_interval":1000000
+}
