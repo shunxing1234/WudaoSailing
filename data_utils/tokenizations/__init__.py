@@ -57,6 +57,43 @@ def get_tokenizer(args=None, outer_tokenizer=None):
             from .cogview import UnifiedTokenizer
             get_tokenizer.tokenizer = UnifiedTokenizer(
                 args.img_tokenizer_path,
+                #txt_tokenizer_type='cogview',
+                device=torch.cuda.current_device()
+            )
+        elif args.tokenizer_type.startswith('glm'):
+            kwargs = {"add_block_symbols": True, "add_task_mask": args.task_mask,
+                      "add_decoder_mask": args.block_mask_prob > 0.0}
+            if args.tokenizer_type == "glm_GPT2BPETokenizer":
+                from .glm import GPT2BPETokenizer
+                get_tokenizer.tokenizer = GPT2BPETokenizer(args.tokenizer_model_type, **kwargs)
+            elif args.tokenizer_type == "glm_ChineseSPTokenizer":
+                from .glm import ChineseSPTokenizer
+                get_tokenizer.tokenizer = ChineseSPTokenizer(args.tokenizer_model_type, **kwargs)
+        else:
+            # assert args.vocab_size > 0
+            get_tokenizer.tokenizer = FakeTokenizer(60000)
+        _export_vocab_size_to_args(args, get_tokenizer.tokenizer.num_tokens)
+    return get_tokenizer.tokenizer
+
+
+def ptuning_get_tokenizer(args=None, outer_tokenizer=None):
+    '''
+        If you're using outer_tokenizer, call `get_tokenizer(args, outer_tokenizer)`
+        before `training_main`.
+    '''
+    if outer_tokenizer is not None:
+        assert hasattr(outer_tokenizer, 'num_tokens')
+        assert not hasattr(get_tokenizer, 'tokenizer')
+        get_tokenizer.tokenizer = outer_tokenizer
+        _export_vocab_size_to_args(args, get_tokenizer.tokenizer.num_tokens)
+        return outer_tokenizer
+    if not hasattr(get_tokenizer, 'tokenizer'):
+        # the first time to load the tokenizer
+        print(args.tokenizer_type)
+        if args.tokenizer_type.startswith('cogview'): # or cogview_ICE
+            from .cogview import UnifiedTokenizer
+            get_tokenizer.tokenizer = UnifiedTokenizer(
+                args.img_tokenizer_path,
                 txt_tokenizer_type='cogview',
                 device=torch.cuda.current_device()
             )

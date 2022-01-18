@@ -28,8 +28,8 @@ import mpu
 
 from utils.utils import get_checkpoint_name, ensure_directory_exists,get_checkpoint_tracker_filename,get_checkpoint_iteration
 from utils.prints import print_rank_0
- 
-
+from model import PyTorchDistributedDataParallel as TorchDDP, DistributedDataParallel as LocalDDP
+from fp16 import FP16_Module
 
 def load_checkpoint(model, optimizer, lr_scheduler, args, no_deepspeed=False, no_load_optim=False):
     """Load a model checkpoint."""

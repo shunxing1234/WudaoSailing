@@ -20,7 +20,7 @@ import numpy as np
 import logging
 import mpu
 from arguments import get_args
-from data_utils.tokenizations import get_tokenizer
+from data_utils.tokenizations import ptuning_get_tokenizer
 
 from model.base_model import BaseModel, BaseMixin, non_conflict
 from train_utils.deepspeed_training import training_main
@@ -105,7 +105,7 @@ def forward_step(data_iterator, model, args, timers):
     return loss, {'acc': acc}
 
 def create_dataset_function(path, args):
-    tokenizer = get_tokenizer()
+    tokenizer = ptuning_get_tokenizer()
     def process_fn(row):
         sentence, label = tokenizer._encode(row[0]), int(row[1].strip())
         sentence = [tokenizer.get_command('ENC').Id] + sentence + [tokenizer.get_command('eos').Id]

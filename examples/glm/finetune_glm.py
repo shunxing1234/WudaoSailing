@@ -4,11 +4,13 @@ import os
 import json
 
 import random
-
+import sys
+root_dir='/data/wang/models/wudao'
+sys.path.append(root_dir)
 
 from tasks.data_utils import build_data_loader, FakeDataloader
 from utils.utils import get_sample_writer, get_log_dir, print_and_save_args, debug_finetune_data
-from config.arguments import get_args
+from arguments import get_args
 from filelock import FileLock
 import pretrain_glm
 from pretrain_glm import forward_step as lm_forward_step
@@ -17,17 +19,18 @@ import mpu
 
 import torch
 import torch.utils.data
-from config.configure_data import prepare_tokenizer
+from data_utils.configure_data import prepare_tokenizer
 
 from utils.utils import print_rank_0
 from utils.utils import Timers
-from train.train_utils import setup_model_and_optimizer, train_step, load_pretrained
-from utils.utils import load_checkpoint, save_checkpoint
-from pretrain_glm import report_iteration_metrics
+from train_utils.trainers import  train_step
+from setup_model import setup_model_and_optimizer
+from utils.saver import  save_checkpoint
+from utils.loader import load_checkpoint, load_pretrained
+from utils.reports import report_iteration_metrics
 from pretrain_glm import evaluate_and_print_results
-from pretrain_glm import initialize_distributed
-from pretrain_glm import set_random_seed
-from config.configure_data import make_data_loader
+from train_utils.train_init import initialize_distributed, set_random_seed
+from data_utils.configure_data import make_data_loader
 
 
 def process_batch(batch, args):
