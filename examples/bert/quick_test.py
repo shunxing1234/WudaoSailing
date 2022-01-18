@@ -1,6 +1,6 @@
 # 初始化
 import sys
-root_dir='/data/wang/glm/wudao'
+root_dir='/data/wang/models/wudao'
 sys.path.append(root_dir)
 from data_utils.BertDataset import BertDataset
 from nets.BertEmbeddings import WordPosSegEmbedding
