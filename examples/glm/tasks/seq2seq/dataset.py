@@ -7,7 +7,7 @@ import numpy as np
 from tasks.data_utils import InputExample
 from tqdm import tqdm
 from utils import print_rank_0
-from data_utils.corpora import punctuation_standardization
+from data_processing.corpora import punctuation_standardization
 
 
 def gigaword_detokenize(string, is_target=False):

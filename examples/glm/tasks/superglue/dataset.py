@@ -34,7 +34,7 @@ from utils.utils import print_rank_0
 from tasks.superglue.pvp import PVPS
 from tasks.data_utils import build_input_from_ids, build_sample, num_special_tokens_to_add
 from collections import defaultdict
-from data_utils.corpora import punctuation_standardization
+from dataprocessing.corpora import punctuation_standardization
 
 TRAIN_SET = "train"
 DEV_SET = "dev"

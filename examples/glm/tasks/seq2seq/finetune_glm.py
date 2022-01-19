@@ -20,7 +20,7 @@ from configure_data import prepare_tokenizer
 
 from utils import print_rank_0
 from utils import Timers
-from train_utils import setup_model_and_optimizer, train_step, load_pretrained
+from training import setup_model_and_optimizer, train_step, load_pretrained
 from utils import load_checkpoint, save_checkpoint
 from pretrain_glm import report_iteration_metrics
 from pretrain_glm import evaluate_and_print_results

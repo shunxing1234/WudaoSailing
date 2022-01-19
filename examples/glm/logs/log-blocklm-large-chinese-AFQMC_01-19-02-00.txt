@@ -1,0 +1,753 @@
+[2022-01-19 02:00:11,725] [WARNING] [runner.py:132:fetch_hostfile] Unable to find hostfile, will proceed with training with local resources only.
+[2022-01-19 02:00:11,775] [INFO] [runner.py:398:main] cmd = /opt/conda/bin/python -u -m deepspeed.launcher.launch --world_info=eyJsb2NhbGhvc3QiOiBbMCwgMSwgMiwgM119 --master_addr=127.0.0.1 --master_port=21171 finetune_glm.py --deepspeed --deepspeed_config config_tasks/config_blocklm_10B.json --finetune --cloze-eval --experiment-name blocklm-large-chinese-AFQMC_01-19-02-00 --task afqmc --data-dir /data/wang/datasets/finetune_data/lcqmc --save /data/wang/models/model_save/checkpoints --seq-length 256 --checkpoint-activations --eval-batch-size 16 --save-epoch 100000 --num-workers 1 --no-load-optim --no-load-lr-scheduler --block-lm --cloze-eval --task-mask --num-layers 24 --hidden-size 1024 --num-attention-heads 16 --max-position-embeddings 1024 --tokenizer-type ChineseSPTokenizer --fix-command-token --load-pretrained /data/wang/models/model_save/checkpoints --lr-decay-style linear --warmup 0.1 --weight-decay 1.0e-1 --pattern-id 0 --save-interval 100 --log-interval 100 --eval-interval 100 --eval-iters 100 --pattern-id 0 --fp16 --model-parallel-size 1 --epochs 10 --overwrite
+[2022-01-19 02:00:12,493] [INFO] [launch.py:73:main] 0 NCCL_DEBUG=info
+[2022-01-19 02:00:12,493] [INFO] [launch.py:73:main] 0 NCCL_NET_GDR_LEVEL=2
+[2022-01-19 02:00:12,493] [INFO] [launch.py:73:main] 0 NCCL_IB_DISABLE=0
+[2022-01-19 02:00:12,493] [INFO] [launch.py:73:main] 0 NV_LIBNCCL_DEV_PACKAGE=libnccl-dev=2.11.4-1+cuda10.2
+[2022-01-19 02:00:12,493] [INFO] [launch.py:73:main] 0 NCCL_INCLUDE_DIR=/usr/include
+[2022-01-19 02:00:12,493] [INFO] [launch.py:73:main] 0 NCCL_VERSION=2.11.4-1
+[2022-01-19 02:00:12,493] [INFO] [launch.py:73:main] 0 NV_LIBNCCL_DEV_VERSION=2.11.4-1
+[2022-01-19 02:00:12,493] [INFO] [launch.py:73:main] 0 NV_LIBNCCL_PACKAGE_VERSION=2.11.4-1
+[2022-01-19 02:00:12,493] [INFO] [launch.py:73:main] 0 NV_LIBNCCL_PACKAGE=libnccl2=2.11.4-1+cuda10.2
+[2022-01-19 02:00:12,494] [INFO] [launch.py:73:main] 0 NV_LIBNCCL_DEV_PACKAGE_NAME=libnccl-dev
+[2022-01-19 02:00:12,494] [INFO] [launch.py:73:main] 0 NV_LIBNCCL_PACKAGE_NAME=libnccl2
+[2022-01-19 02:00:12,494] [INFO] [launch.py:73:main] 0 NCCL_LIBRARY=/usr/lib/x86_64-linux-gnu
+[2022-01-19 02:00:12,494] [INFO] [launch.py:80:main] WORLD INFO DICT: {'localhost': [0, 1, 2, 3]}
+[2022-01-19 02:00:12,494] [INFO] [launch.py:86:main] nnodes=1, num_local_procs=4, node_rank=0
+[2022-01-19 02:00:12,494] [INFO] [launch.py:99:main] global_rank_mapping=defaultdict(<class 'list'>, {'localhost': [0, 1, 2, 3]})
+[2022-01-19 02:00:12,494] [INFO] [launch.py:100:main] dist_world_size=4
+[2022-01-19 02:00:12,494] [INFO] [launch.py:102:main] Setting CUDA_VISIBLE_DEVICES=0,1,2,3
+using world size: 4 and model-parallel size: 1 
+ > using dynamic loss scaling
+> initializing model parallel with size 1
+> initializing model parallel cuda seeds on global rank 0, model parallel rank 0, and data parallel rank 0 with model parallel seed: 3952 and data parallel seed: 1234
+{'pad': 50000, 'eos': 50000, 'sep': 50001, 'ENC': 50002, 'MASK': 50003, 'unk': 50004, 'sop': 50006, 'eop': 50007, 'sMASK': 50008, 'gMASK': 50009}
+> padded vocab (size: 50010) with 38 dummy tokens (new size: 50048)
+> found end-of-document token: 50000
+glm_dist16:45461:45461 [3] NCCL INFO Bootstrap : Using bond1:172.31.32.40<0>
+glm_dist16:45461:45461 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+glm_dist16:45461:45461 [3] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+glm_dist16:45461:45461 [3] NCCL INFO NET/IB : No device found.
+glm_dist16:45461:45461 [3] NCCL INFO NET/Socket : Using [0]bond1:172.31.32.40<0> [1]vethf76a3c0:fe80::1c70:26ff:fe30:6d88%vethf76a3c0<0> [2]vethe25bc53:fe80::7c24:adff:fe52:b43d%vethe25bc53<0> [3]veth7a86593:fe80::5879:ffff:fe90:7190%veth7a86593<0> [4]vethbdea447:fe80::28d4:31ff:fe41:c788%vethbdea447<0>
+glm_dist16:45461:45461 [3] NCCL INFO Using network Socket
+NCCL version 2.11.4+cuda10.2
+glm_dist16:45458:45458 [0] NCCL INFO Bootstrap : Using bond1:172.31.32.40<0>
+glm_dist16:45458:45458 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+glm_dist16:45458:45458 [0] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+glm_dist16:45458:45458 [0] NCCL INFO NET/IB : No device found.
+glm_dist16:45458:45458 [0] NCCL INFO NET/Socket : Using [0]bond1:172.31.32.40<0> [1]vethf76a3c0:fe80::1c70:26ff:fe30:6d88%vethf76a3c0<0> [2]vethe25bc53:fe80::7c24:adff:fe52:b43d%vethe25bc53<0> [3]veth7a86593:fe80::5879:ffff:fe90:7190%veth7a86593<0> [4]vethbdea447:fe80::28d4:31ff:fe41:c788%vethbdea447<0>
+glm_dist16:45458:45458 [0] NCCL INFO Using network Socket
+NCCL version 2.11.4+cuda10.2
+glm_dist16:45460:45460 [2] NCCL INFO Bootstrap : Using bond1:172.31.32.40<0>
+glm_dist16:45460:45460 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+glm_dist16:45460:45460 [2] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+glm_dist16:45460:45460 [2] NCCL INFO NET/IB : No device found.
+glm_dist16:45460:45460 [2] NCCL INFO NET/Socket : Using [0]bond1:172.31.32.40<0> [1]vethf76a3c0:fe80::1c70:26ff:fe30:6d88%vethf76a3c0<0> [2]vethe25bc53:fe80::7c24:adff:fe52:b43d%vethe25bc53<0> [3]veth7a86593:fe80::5879:ffff:fe90:7190%veth7a86593<0> [4]vethbdea447:fe80::28d4:31ff:fe41:c788%vethbdea447<0>
+glm_dist16:45460:45460 [2] NCCL INFO Using network Socket
+NCCL version 2.11.4+cuda10.2
+glm_dist16:45459:45459 [1] NCCL INFO Bootstrap : Using bond1:172.31.32.40<0>
+glm_dist16:45459:45459 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+glm_dist16:45459:45459 [1] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+glm_dist16:45459:45459 [1] NCCL INFO NET/IB : No device found.
+glm_dist16:45459:45459 [1] NCCL INFO NET/Socket : Using [0]bond1:172.31.32.40<0> [1]vethf76a3c0:fe80::1c70:26ff:fe30:6d88%vethf76a3c0<0> [2]vethe25bc53:fe80::7c24:adff:fe52:b43d%vethe25bc53<0> [3]veth7a86593:fe80::5879:ffff:fe90:7190%veth7a86593<0> [4]vethbdea447:fe80::28d4:31ff:fe41:c788%vethbdea447<0>
+glm_dist16:45459:45459 [1] NCCL INFO Using network Socket
+NCCL version 2.11.4+cuda10.2
+glm_dist16:45461:45492 [3] NCCL INFO Channel 00/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 01/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 02/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 03/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 04/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 05/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 06/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 07/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 08/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 09/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 10/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 11/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 12/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 13/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 14/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 15/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 16/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 17/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 18/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 19/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 20/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 21/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 22/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 23/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 24/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 25/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 26/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 27/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 28/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 29/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 30/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Channel 31/32 :    0
+glm_dist16:45461:45492 [3] NCCL INFO Trees [0] -1/-1/-1->0->-1 [1] -1/-1/-1->0->-1 [2] -1/-1/-1->0->-1 [3] -1/-1/-1->0->-1 [4] -1/-1/-1->0->-1 [5] -1/-1/-1->0->-1 [6] -1/-1/-1->0->-1 [7] -1/-1/-1->0->-1 [8] -1/-1/-1->0->-1 [9] -1/-1/-1->0->-1 [10] -1/-1/-1->0->-1 [11] -1/-1/-1->0->-1 [12] -1/-1/-1->0->-1 [13] -1/-1/-1->0->-1 [14] -1/-1/-1->0->-1 [15] -1/-1/-1->0->-1 [16] -1/-1/-1->0->-1 [17] -1/-1/-1->0->-1 [18] -1/-1/-1->0->-1 [19] -1/-1/-1->0->-1 [20] -1/-1/-1->0->-1 [21] -1/-1/-1->0->-1 [22] -1/-1/-1->0->-1 [23] -1/-1/-1->0->-1 [24] -1/-1/-1->0->-1 [25] -1/-1/-1->0->-1 [26] -1/-1/-1->0->-1 [27] -1/-1/-1->0->-1 [28] -1/-1/-1->0->-1 [29] -1/-1/-1->0->-1 [30] -1/-1/-1->0->-1 [31] -1/-1/-1->0->-1
+glm_dist16:45461:45492 [3] NCCL INFO Setting affinity for GPU 3 to 3ffff0,0003ffff
+glm_dist16:45461:45492 [3] NCCL INFO Connected all rings
+glm_dist16:45461:45492 [3] NCCL INFO Connected all trees
+glm_dist16:45461:45492 [3] NCCL INFO 32 coll channels, 32 p2p channels, 32 p2p channels per peer
+glm_dist16:45461:45492 [3] NCCL INFO comm 0x7f3cd4006a20 rank 0 nranks 1 cudaDev 3 busId 1e000 - Init COMPLETE
+glm_dist16:45458:45497 [0] NCCL INFO Channel 00/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 01/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 02/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 03/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 04/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 05/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 06/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 07/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 08/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 09/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 10/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 11/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 12/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 13/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 14/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 15/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 16/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 17/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 18/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 19/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 20/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 21/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 22/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 23/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 24/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 25/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 26/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 27/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 28/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 29/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 30/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Channel 31/32 :    0
+glm_dist16:45458:45497 [0] NCCL INFO Trees [0] -1/-1/-1->0->-1 [1] -1/-1/-1->0->-1 [2] -1/-1/-1->0->-1 [3] -1/-1/-1->0->-1 [4] -1/-1/-1->0->-1 [5] -1/-1/-1->0->-1 [6] -1/-1/-1->0->-1 [7] -1/-1/-1->0->-1 [8] -1/-1/-1->0->-1 [9] -1/-1/-1->0->-1 [10] -1/-1/-1->0->-1 [11] -1/-1/-1->0->-1 [12] -1/-1/-1->0->-1 [13] -1/-1/-1->0->-1 [14] -1/-1/-1->0->-1 [15] -1/-1/-1->0->-1 [16] -1/-1/-1->0->-1 [17] -1/-1/-1->0->-1 [18] -1/-1/-1->0->-1 [19] -1/-1/-1->0->-1 [20] -1/-1/-1->0->-1 [21] -1/-1/-1->0->-1 [22] -1/-1/-1->0->-1 [23] -1/-1/-1->0->-1 [24] -1/-1/-1->0->-1 [25] -1/-1/-1->0->-1 [26] -1/-1/-1->0->-1 [27] -1/-1/-1->0->-1 [28] -1/-1/-1->0->-1 [29] -1/-1/-1->0->-1 [30] -1/-1/-1->0->-1 [31] -1/-1/-1->0->-1
+glm_dist16:45458:45497 [0] NCCL INFO Setting affinity for GPU 0 to 3ffff0,0003ffff
+glm_dist16:45459:45500 [1] NCCL INFO Channel 00/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 01/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 02/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 03/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 04/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 05/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 06/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 07/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 08/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 09/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 10/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 11/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 12/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 13/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 14/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 15/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 16/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 17/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 18/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 19/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 20/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 21/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 22/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 23/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 24/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 25/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 26/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 27/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 28/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 29/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 30/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Channel 31/32 :    0
+glm_dist16:45459:45500 [1] NCCL INFO Trees [0] -1/-1/-1->0->-1 [1] -1/-1/-1->0->-1 [2] -1/-1/-1->0->-1 [3] -1/-1/-1->0->-1 [4] -1/-1/-1->0->-1 [5] -1/-1/-1->0->-1 [6] -1/-1/-1->0->-1 [7] -1/-1/-1->0->-1 [8] -1/-1/-1->0->-1 [9] -1/-1/-1->0->-1 [10] -1/-1/-1->0->-1 [11] -1/-1/-1->0->-1 [12] -1/-1/-1->0->-1 [13] -1/-1/-1->0->-1 [14] -1/-1/-1->0->-1 [15] -1/-1/-1->0->-1 [16] -1/-1/-1->0->-1 [17] -1/-1/-1->0->-1 [18] -1/-1/-1->0->-1 [19] -1/-1/-1->0->-1 [20] -1/-1/-1->0->-1 [21] -1/-1/-1->0->-1 [22] -1/-1/-1->0->-1 [23] -1/-1/-1->0->-1 [24] -1/-1/-1->0->-1 [25] -1/-1/-1->0->-1 [26] -1/-1/-1->0->-1 [27] -1/-1/-1->0->-1 [28] -1/-1/-1->0->-1 [29] -1/-1/-1->0->-1 [30] -1/-1/-1->0->-1 [31] -1/-1/-1->0->-1
+glm_dist16:45459:45500 [1] NCCL INFO Setting affinity for GPU 1 to 3ffff0,0003ffff
+glm_dist16:45460:45499 [2] NCCL INFO Channel 00/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 01/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 02/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 03/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 04/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 05/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 06/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 07/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 08/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 09/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 10/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 11/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 12/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 13/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 14/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 15/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 16/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 17/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 18/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 19/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 20/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 21/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 22/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 23/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 24/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 25/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 26/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 27/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 28/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 29/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 30/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Channel 31/32 :    0
+glm_dist16:45460:45499 [2] NCCL INFO Trees [0] -1/-1/-1->0->-1 [1] -1/-1/-1->0->-1 [2] -1/-1/-1->0->-1 [3] -1/-1/-1->0->-1 [4] -1/-1/-1->0->-1 [5] -1/-1/-1->0->-1 [6] -1/-1/-1->0->-1 [7] -1/-1/-1->0->-1 [8] -1/-1/-1->0->-1 [9] -1/-1/-1->0->-1 [10] -1/-1/-1->0->-1 [11] -1/-1/-1->0->-1 [12] -1/-1/-1->0->-1 [13] -1/-1/-1->0->-1 [14] -1/-1/-1->0->-1 [15] -1/-1/-1->0->-1 [16] -1/-1/-1->0->-1 [17] -1/-1/-1->0->-1 [18] -1/-1/-1->0->-1 [19] -1/-1/-1->0->-1 [20] -1/-1/-1->0->-1 [21] -1/-1/-1->0->-1 [22] -1/-1/-1->0->-1 [23] -1/-1/-1->0->-1 [24] -1/-1/-1->0->-1 [25] -1/-1/-1->0->-1 [26] -1/-1/-1->0->-1 [27] -1/-1/-1->0->-1 [28] -1/-1/-1->0->-1 [29] -1/-1/-1->0->-1 [30] -1/-1/-1->0->-1 [31] -1/-1/-1->0->-1
+glm_dist16:45460:45499 [2] NCCL INFO Setting affinity for GPU 2 to 3ffff0,0003ffff
+glm_dist16:45458:45497 [0] NCCL INFO Connected all rings
+glm_dist16:45458:45497 [0] NCCL INFO Connected all trees
+glm_dist16:45458:45497 [0] NCCL INFO 32 coll channels, 32 p2p channels, 32 p2p channels per peer
+glm_dist16:45458:45497 [0] NCCL INFO comm 0x7f4098006a20 rank 0 nranks 1 cudaDev 0 busId 1b000 - Init COMPLETE
+Creating afqmc dataset from file at /data/wang/datasets/finetune_data/lcqmc (split=train)
+glm_dist16:45460:45499 [2] NCCL INFO Connected all rings
+glm_dist16:45460:45499 [2] NCCL INFO Connected all trees
+glm_dist16:45460:45499 [2] NCCL INFO 32 coll channels, 32 p2p channels, 32 p2p channels per peer
+glm_dist16:45460:45499 [2] NCCL INFO comm 0x7fa800006a20 rank 0 nranks 1 cudaDev 2 busId 1d000 - Init COMPLETE
+glm_dist16:45459:45500 [1] NCCL INFO Connected all rings
+glm_dist16:45459:45500 [1] NCCL INFO Connected all trees
+glm_dist16:45459:45500 [1] NCCL INFO 32 coll channels, 32 p2p channels, 32 p2p channels per peer
+glm_dist16:45459:45500 [1] NCCL INFO comm 0x7fccd4006a20 rank 0 nranks 1 cudaDev 1 busId 1c000 - Init COMPLETE
+Returning 238766 train examples with label dist.: [('1', 138574), ('0', 100192)]
+Creating afqmc dataset from file at /data/wang/datasets/finetune_data/lcqmc (split=dev)
+Returning 8802 dev examples with label dist.: [('1', 4402), ('0', 4400)]
+building train and validation dataloaders ...
+Creating afqmc dataset from file at /data/wang/datasets/finetune_data/lcqmc (split=dev)
+Returning 8802 dev examples with label dist.: [('1', 4402), ('0', 4400)]
+Creating afqmc dataset from file at /data/wang/datasets/finetune_data/lcqmc (split=test)
+Returning 12500 test examples with label dist.: [('0', 6250), ('1', 6250)]
+building GPT2 model ...
+ > number of parameters on model parallel rank 0: 355659776
+DeepSpeed is enabled.
+[2022-01-19 02:00:28,233] [INFO] [logging.py:69:log_dist] [Rank 0] DeepSpeed info: version=0.5.9+317400e, git-hash=317400e, git-branch=master
+[2022-01-19 02:00:28,244] [INFO] [logging.py:69:log_dist] [Rank 0] initializing deepspeed groups using mpu
+[2022-01-19 02:00:28,244] [INFO] [logging.py:69:log_dist] [Rank 0] Initializing deepspeed groups with model parallel size 1, expert parallel size 1, and data parallel size 4
+[2022-01-19 02:00:28,664] [INFO] [logging.py:69:log_dist] [Rank 0] creating expert data parallel process group with ranks: [0, 1, 2, 3]
+[2022-01-19 02:00:28,665] [INFO] [logging.py:69:log_dist] [Rank 0] creating expert parallel process group with ranks: [0]
+[2022-01-19 02:00:28,675] [INFO] [logging.py:69:log_dist] [Rank 0] creating expert parallel process group with ranks: [1]
+[2022-01-19 02:00:28,688] [INFO] [logging.py:69:log_dist] [Rank 0] creating expert parallel process group with ranks: [2]
+[2022-01-19 02:00:28,688] [INFO] [logging.py:69:log_dist] [Rank 0] creating expert parallel process group with ranks: [3]
+glm_dist16:45459:45657 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0
+glm_dist16:45459:45657 [1] NCCL INFO Setting affinity for GPU 1 to 3ffff0,0003ffff
+glm_dist16:45460:45659 [2] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 3/-1/-1->2->1
+glm_dist16:45460:45659 [2] NCCL INFO Setting affinity for GPU 2 to 3ffff0,0003ffff
+glm_dist16:45461:45658 [3] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] -1/-1/-1->3->2
+glm_dist16:45461:45658 [3] NCCL INFO Setting affinity for GPU 3 to 3ffff0,0003ffff
+glm_dist16:45458:45656 [0] NCCL INFO Channel 00/02 :    0   1   2   3
+glm_dist16:45458:45656 [0] NCCL INFO Channel 01/02 :    0   1   2   3
+glm_dist16:45458:45656 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1
+glm_dist16:45458:45656 [0] NCCL INFO Setting affinity for GPU 0 to 3ffff0,0003ffff
+glm_dist16:45458:45656 [0] NCCL INFO Channel 00 : 0[1b000] -> 1[1c000] via P2P/IPC
+glm_dist16:45459:45657 [1] NCCL INFO Channel 00 : 1[1c000] -> 2[1d000] via P2P/IPC
+glm_dist16:45461:45658 [3] NCCL INFO Channel 00 : 3[1e000] -> 0[1b000] via P2P/IPC
+glm_dist16:45460:45659 [2] NCCL INFO Channel 00 : 2[1d000] -> 3[1e000] via P2P/IPC
+glm_dist16:45458:45656 [0] NCCL INFO Channel 01 : 0[1b000] -> 1[1c000] via P2P/IPC
+glm_dist16:45459:45657 [1] NCCL INFO Channel 01 : 1[1c000] -> 2[1d000] via P2P/IPC
+glm_dist16:45460:45659 [2] NCCL INFO Channel 01 : 2[1d000] -> 3[1e000] via P2P/IPC
+glm_dist16:45461:45658 [3] NCCL INFO Channel 01 : 3[1e000] -> 0[1b000] via P2P/IPC
+glm_dist16:45460:45659 [2] NCCL INFO Connected all rings
+glm_dist16:45458:45656 [0] NCCL INFO Connected all rings
+glm_dist16:45459:45657 [1] NCCL INFO Connected all rings
+glm_dist16:45461:45658 [3] NCCL INFO Connected all rings
+glm_dist16:45461:45658 [3] NCCL INFO Channel 00 : 3[1e000] -> 2[1d000] via P2P/IPC
+glm_dist16:45460:45659 [2] NCCL INFO Channel 00 : 2[1d000] -> 1[1c000] via P2P/IPC
+glm_dist16:45461:45658 [3] NCCL INFO Channel 01 : 3[1e000] -> 2[1d000] via P2P/IPC
+glm_dist16:45459:45657 [1] NCCL INFO Channel 00 : 1[1c000] -> 0[1b000] via P2P/IPC
+glm_dist16:45460:45659 [2] NCCL INFO Channel 01 : 2[1d000] -> 1[1c000] via P2P/IPC
+glm_dist16:45459:45657 [1] NCCL INFO Channel 01 : 1[1c000] -> 0[1b000] via P2P/IPC
+glm_dist16:45461:45658 [3] NCCL INFO Connected all trees
+glm_dist16:45461:45658 [3] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 8/8/512
+glm_dist16:45461:45658 [3] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+glm_dist16:45458:45656 [0] NCCL INFO Connected all trees
+glm_dist16:45458:45656 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 8/8/512
+glm_dist16:45458:45656 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+glm_dist16:45460:45659 [2] NCCL INFO Connected all trees
+glm_dist16:45460:45659 [2] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 8/8/512
+glm_dist16:45460:45659 [2] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+glm_dist16:45459:45657 [1] NCCL INFO Connected all trees
+glm_dist16:45459:45657 [1] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 8/8/512
+glm_dist16:45459:45657 [1] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+glm_dist16:45459:45657 [1] NCCL INFO comm 0x7fcbc0006a20 rank 1 nranks 4 cudaDev 1 busId 1c000 - Init COMPLETE
+glm_dist16:45461:45658 [3] NCCL INFO comm 0x7f3be4006a20 rank 3 nranks 4 cudaDev 3 busId 1e000 - Init COMPLETE
+glm_dist16:45460:45659 [2] NCCL INFO comm 0x7fa6f8006a20 rank 2 nranks 4 cudaDev 2 busId 1d000 - Init COMPLETE
+glm_dist16:45458:45656 [0] NCCL INFO comm 0x7f3f98006a20 rank 0 nranks 4 cudaDev 0 busId 1b000 - Init COMPLETE
+glm_dist16:45458:45458 [0] NCCL INFO Launch mode Parallel
+[2022-01-19 02:00:29,387] [INFO] [engine.py:277:__init__] DeepSpeed Flops Profiler Enabled: False
+Adam Optimizer #0 is created with AVX2 arithmetic capability.
+Config: alpha=0.000005, betas=(0.900000, 0.950000), weight_decay=0.010000, adam_w=1
+Adam Optimizer #0 is created with AVX2 arithmetic capability.
+Config: alpha=0.000005, betas=(0.900000, 0.950000), weight_decay=0.010000, adam_w=1
+Adam Optimizer #0 is created with AVX2 arithmetic capability.
+Config: alpha=0.000005, betas=(0.900000, 0.950000), weight_decay=0.010000, adam_w=1
+Adam Optimizer #0 is created with AVX2 arithmetic capability.
+Config: alpha=0.000005, betas=(0.900000, 0.950000), weight_decay=0.010000, adam_w=1
+[2022-01-19 02:00:30,791] [INFO] [engine.py:1107:_configure_optimizer] Using DeepSpeed Optimizer param name adam as basic optimizer
+[2022-01-19 02:00:30,808] [INFO] [engine.py:1115:_configure_optimizer] DeepSpeed Basic Optimizer = DeepSpeedCPUAdam
+[2022-01-19 02:00:30,809] [INFO] [utils.py:43:is_zero_supported_optimizer] Checking ZeRO support for optimizer=DeepSpeedCPUAdam type=<class 'deepspeed.ops.adam.cpu_adam.DeepSpeedCPUAdam'>
+[2022-01-19 02:00:30,809] [INFO] [logging.py:69:log_dist] [Rank 0] Creating fp16 ZeRO stage 2 optimizer
+[2022-01-19 02:00:30,809] [INFO] [stage_1_and_2.py:113:__init__] Reduce bucket size 50000000.0
+[2022-01-19 02:00:30,809] [INFO] [stage_1_and_2.py:114:__init__] Allgather bucket size 50000000.0
+[2022-01-19 02:00:30,809] [INFO] [stage_1_and_2.py:115:__init__] CPU Offload: True
+[2022-01-19 02:00:30,809] [INFO] [stage_1_and_2.py:116:__init__] Round robin gradient partitioning: False
+Rank: 1 partition count [4, 4] and sizes[(88834560, False), (80384, False)] 
+Rank: 3 partition count [4, 4] and sizes[(88834560, False), (80384, False)] 
+Rank: 0 partition count [4, 4] and sizes[(88834560, False), (80384, False)] 
+Rank: 2 partition count [4, 4] and sizes[(88834560, False), (80384, False)] 
+glm_dist16:45460:45672 [2] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 3/-1/-1->2->1
+glm_dist16:45461:45669 [3] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] -1/-1/-1->3->2
+glm_dist16:45460:45672 [2] NCCL INFO Setting affinity for GPU 2 to 3ffff0,0003ffff
+glm_dist16:45461:45669 [3] NCCL INFO Setting affinity for GPU 3 to 3ffff0,0003ffff
+glm_dist16:45459:45670 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0
+glm_dist16:45459:45670 [1] NCCL INFO Setting affinity for GPU 1 to 3ffff0,0003ffff
+glm_dist16:45458:45671 [0] NCCL INFO Channel 00/02 :    0   1   2   3
+glm_dist16:45458:45671 [0] NCCL INFO Channel 01/02 :    0   1   2   3
+glm_dist16:45458:45671 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1
+glm_dist16:45458:45671 [0] NCCL INFO Setting affinity for GPU 0 to 3ffff0,0003ffff
+glm_dist16:45459:45670 [1] NCCL INFO Channel 00 : 1[1c000] -> 2[1d000] via P2P/IPC
+glm_dist16:45461:45669 [3] NCCL INFO Channel 00 : 3[1e000] -> 0[1b000] via P2P/IPC
+glm_dist16:45458:45671 [0] NCCL INFO Channel 00 : 0[1b000] -> 1[1c000] via P2P/IPC
+glm_dist16:45460:45672 [2] NCCL INFO Channel 00 : 2[1d000] -> 3[1e000] via P2P/IPC
+glm_dist16:45459:45670 [1] NCCL INFO Channel 01 : 1[1c000] -> 2[1d000] via P2P/IPC
+glm_dist16:45461:45669 [3] NCCL INFO Channel 01 : 3[1e000] -> 0[1b000] via P2P/IPC
+glm_dist16:45458:45671 [0] NCCL INFO Channel 01 : 0[1b000] -> 1[1c000] via P2P/IPC
+glm_dist16:45460:45672 [2] NCCL INFO Channel 01 : 2[1d000] -> 3[1e000] via P2P/IPC
+glm_dist16:45459:45670 [1] NCCL INFO Connected all rings
+glm_dist16:45458:45671 [0] NCCL INFO Connected all rings
+glm_dist16:45461:45669 [3] NCCL INFO Connected all rings
+glm_dist16:45460:45672 [2] NCCL INFO Connected all rings
+glm_dist16:45461:45669 [3] NCCL INFO Channel 00 : 3[1e000] -> 2[1d000] via P2P/IPC
+glm_dist16:45461:45669 [3] NCCL INFO Channel 01 : 3[1e000] -> 2[1d000] via P2P/IPC
+glm_dist16:45459:45670 [1] NCCL INFO Channel 00 : 1[1c000] -> 0[1b000] via P2P/IPC
+glm_dist16:45460:45672 [2] NCCL INFO Channel 00 : 2[1d000] -> 1[1c000] via P2P/IPC
+glm_dist16:45459:45670 [1] NCCL INFO Channel 01 : 1[1c000] -> 0[1b000] via P2P/IPC
+glm_dist16:45460:45672 [2] NCCL INFO Channel 01 : 2[1d000] -> 1[1c000] via P2P/IPC
+glm_dist16:45458:45671 [0] NCCL INFO Connected all trees
+glm_dist16:45458:45671 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 8/8/512
+glm_dist16:45458:45671 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+glm_dist16:45461:45669 [3] NCCL INFO Connected all trees
+glm_dist16:45461:45669 [3] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 8/8/512
+glm_dist16:45461:45669 [3] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+glm_dist16:45460:45672 [2] NCCL INFO Connected all trees
+glm_dist16:45459:45670 [1] NCCL INFO Connected all trees
+glm_dist16:45459:45670 [1] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 8/8/512
+glm_dist16:45459:45670 [1] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+glm_dist16:45460:45672 [2] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 8/8/512
+glm_dist16:45460:45672 [2] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+glm_dist16:45460:45672 [2] NCCL INFO comm 0x7fa6f80e97b0 rank 2 nranks 4 cudaDev 2 busId 1d000 - Init COMPLETE
+glm_dist16:45458:45671 [0] NCCL INFO comm 0x7f3f3c006a20 rank 0 nranks 4 cudaDev 0 busId 1b000 - Init COMPLETE
+glm_dist16:45459:45670 [1] NCCL INFO comm 0x7fcbc00e9f40 rank 1 nranks 4 cudaDev 1 busId 1c000 - Init COMPLETE
+glm_dist16:45461:45669 [3] NCCL INFO comm 0x7f3be40e7650 rank 3 nranks 4 cudaDev 3 busId 1e000 - Init COMPLETE
+glm_dist16:45458:45458 [0] NCCL INFO Launch mode Parallel
+[2022-01-19 02:00:34,246] [INFO] [utils.py:822:see_memory_usage] Before initializing optimizer states
+[2022-01-19 02:00:34,251] [INFO] [utils.py:823:see_memory_usage] MA 0.76 GB         Max_MA 0.76 GB         CA 1.37 GB         Max_CA 1 GB 
+[2022-01-19 02:00:34,252] [INFO] [utils.py:831:see_memory_usage] CPU Virtual Memory:  used = 86.8 GB, percent = 17.2%
+[2022-01-19 02:00:35,186] [INFO] [utils.py:822:see_memory_usage] After initializing optimizer states
+[2022-01-19 02:00:35,186] [INFO] [utils.py:823:see_memory_usage] MA 0.76 GB         Max_MA 0.76 GB         CA 1.37 GB         Max_CA 1 GB 
+[2022-01-19 02:00:35,187] [INFO] [utils.py:831:see_memory_usage] CPU Virtual Memory:  used = 89.09 GB, percent = 17.7%
+[2022-01-19 02:00:35,187] [INFO] [stage_1_and_2.py:483:__init__] optimizer state initialized
+[2022-01-19 02:00:35,385] [INFO] [utils.py:822:see_memory_usage] After initializing ZeRO optimizer
+[2022-01-19 02:00:35,386] [INFO] [utils.py:823:see_memory_usage] MA 0.76 GB         Max_MA 0.76 GB         CA 1.37 GB         Max_CA 1 GB 
+[2022-01-19 02:00:35,386] [INFO] [utils.py:831:see_memory_usage] CPU Virtual Memory:  used = 89.31 GB, percent = 17.7%
+[2022-01-19 02:00:35,386] [INFO] [logging.py:69:log_dist] [Rank 0] DeepSpeed Final Optimizer = adam
+[2022-01-19 02:00:35,387] [INFO] [engine.py:807:_configure_lr_scheduler] DeepSpeed using client LR scheduler
+[2022-01-19 02:00:35,387] [INFO] [logging.py:69:log_dist] [Rank 0] DeepSpeed LR Scheduler = None
+[2022-01-19 02:00:35,387] [INFO] [logging.py:69:log_dist] [Rank 0] step=0, skipped=0, lr=[5e-06, 5e-06], mom=[[0.9, 0.95], [0.9, 0.95]]
+[2022-01-19 02:00:35,387] [INFO] [config.py:1058:print] DeepSpeedEngine configuration:
+[2022-01-19 02:00:35,388] [INFO] [config.py:1062:print]   activation_checkpointing_config  {
+    "partition_activations": false, 
+    "contiguous_memory_optimization": false, 
+    "cpu_checkpointing": false, 
+    "number_checkpoints": null, 
+    "synchronize_checkpoint_boundary": false, 
+    "profile": false
+}
+[2022-01-19 02:00:35,388] [INFO] [config.py:1062:print]   aio_config ................... {'block_size': 1048576, 'queue_depth': 8, 'thread_count': 1, 'single_submit': False, 'overlap_events': True}
+[2022-01-19 02:00:35,388] [INFO] [config.py:1062:print]   amp_enabled .................. False
+[2022-01-19 02:00:35,388] [INFO] [config.py:1062:print]   amp_params ................... False
+[2022-01-19 02:00:35,388] [INFO] [config.py:1062:print]   autotuning_config ............ {
+    "enabled": false, 
+    "start_step": null, 
+    "end_step": null, 
+    "metric_path": null, 
+    "arg_mappings": null, 
+    "metric": "throughput", 
+    "model_info": null, 
+    "results_dir": null, 
+    "exps_dir": null, 
+    "overwrite": true, 
+    "fast": true, 
+    "start_profile_step": 3, 
+    "end_profile_step": 5, 
+    "tuner_type": "gridsearch", 
+    "tuner_early_stopping": 5, 
+    "tuner_num_trials": 50, 
+    "model_info_path": null, 
+    "mp_size": 1, 
+    "max_train_batch_size": null, 
+    "min_train_batch_size": 1, 
+    "max_train_micro_batch_size_per_gpu": 1.024000e+03, 
+    "min_train_micro_batch_size_per_gpu": 1, 
+    "num_tuning_micro_batch_sizes": 3
+}
+[2022-01-19 02:00:35,388] [INFO] [config.py:1062:print]   bfloat16_enabled ............. False
+[2022-01-19 02:00:35,388] [INFO] [config.py:1062:print]   checkpoint_tag_validation_enabled  True
+[2022-01-19 02:00:35,388] [INFO] [config.py:1062:print]   checkpoint_tag_validation_fail  False
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   communication_data_type ...... None
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   curriculum_enabled ........... False
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   curriculum_params ............ False
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   dataloader_drop_last ......... False
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   disable_allgather ............ False
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   dump_state ................... False
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   dynamic_loss_scale_args ...... {'init_scale': 4294967296, 'scale_window': 1000, 'delayed_shift': 2, 'min_scale': 1}
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   eigenvalue_enabled ........... False
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   eigenvalue_gas_boundary_resolution  1
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   eigenvalue_layer_name ........ bert.encoder.layer
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   eigenvalue_layer_num ......... 0
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   eigenvalue_max_iter .......... 100
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   eigenvalue_stability ......... 1e-06
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   eigenvalue_tol ............... 0.01
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   eigenvalue_verbose ........... False
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   elasticity_enabled ........... False
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   flops_profiler_config ........ {
+    "enabled": false, 
+    "profile_step": 1, 
+    "module_depth": -1, 
+    "top_modules": 1, 
+    "detailed": true, 
+    "output_file": null
+}
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   fp16_enabled ................. True
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   fp16_master_weights_and_gradients  False
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   fp16_mixed_quantize .......... False
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   global_rank .................. 0
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   gradient_accumulation_steps .. 2
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   gradient_clipping ............ 1.0
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   gradient_predivide_factor .... 1.0
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   initial_dynamic_scale ........ 4294967296
+[2022-01-19 02:00:35,389] [INFO] [config.py:1062:print]   loss_scale ................... 0
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   memory_breakdown ............. False
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   optimizer_legacy_fusion ...... False
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   optimizer_name ............... adam
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   optimizer_params ............. {'lr': 5e-06, 'betas': [0.9, 0.95], 'eps': 1e-08, 'weight_decay': 0.01}
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   pipeline ..................... {'stages': 'auto', 'partition': 'best', 'seed_layers': False, 'activation_checkpoint_interval': 0}
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   pld_enabled .................. False
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   pld_params ................... False
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   prescale_gradients ........... False
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   quantize_change_rate ......... 0.001
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   quantize_groups .............. 1
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   quantize_offset .............. 1000
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   quantize_period .............. 1000
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   quantize_rounding ............ 0
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   quantize_start_bits .......... 16
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   quantize_target_bits ......... 8
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   quantize_training_enabled .... False
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   quantize_type ................ 0
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   quantize_verbose ............. False
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   scheduler_name ............... None
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   scheduler_params ............. None
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   sparse_attention ............. None
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   sparse_gradients_enabled ..... False
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   steps_per_print .............. 50
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   tensorboard_enabled .......... False
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   tensorboard_job_name ......... DeepSpeedJobName
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   tensorboard_output_path ...... 
+[2022-01-19 02:00:35,390] [INFO] [config.py:1062:print]   train_batch_size ............. 32
+[2022-01-19 02:00:35,391] [INFO] [config.py:1062:print]   train_micro_batch_size_per_gpu  4
+[2022-01-19 02:00:35,391] [INFO] [config.py:1062:print]   use_quantizer_kernel ......... False
+[2022-01-19 02:00:35,391] [INFO] [config.py:1062:print]   wall_clock_breakdown ......... False
+[2022-01-19 02:00:35,391] [INFO] [config.py:1062:print]   world_size ................... 4
+[2022-01-19 02:00:35,391] [INFO] [config.py:1062:print]   zero_allow_untested_optimizer  True
+[2022-01-19 02:00:35,391] [INFO] [config.py:1062:print]   zero_config .................. {
+    "stage": 2, 
+    "contiguous_gradients": false, 
+    "reduce_scatter": true, 
+    "reduce_bucket_size": 5.000000e+07, 
+    "allgather_partitions": true, 
+    "allgather_bucket_size": 5.000000e+07, 
+    "overlap_comm": true, 
+    "load_from_fp32_weights": true, 
+    "elastic_checkpoint": true, 
+    "offload_param": null, 
+    "offload_optimizer": {
+        "device": null, 
+        "nvme_path": null, 
+        "buffer_count": 4, 
+        "pin_memory": false, 
+        "pipeline_read": false, 
+        "pipeline_write": false, 
+        "fast_init": false
+    }, 
+    "sub_group_size": 1.000000e+09, 
+    "prefetch_bucket_size": 5.000000e+07, 
+    "param_persistence_threshold": 1.000000e+05, 
+    "max_live_parameters": 1.000000e+09, 
+    "max_reuse_distance": 1.000000e+09, 
+    "gather_fp16_weights_on_model_save": false, 
+    "ignore_unused_parameters": true, 
+    "round_robin_gradients": false, 
+    "legacy_stage1": false
+}
+[2022-01-19 02:00:35,391] [INFO] [config.py:1062:print]   zero_enabled ................. True
+[2022-01-19 02:00:35,391] [INFO] [config.py:1062:print]   zero_optimization_stage ...... 2
+[2022-01-19 02:00:35,391] [INFO] [config.py:1064:print]   json = {
+    "train_micro_batch_size_per_gpu": 4, 
+    "gradient_accumulation_steps": 2, 
+    "steps_per_print": 50, 
+    "gradient_clipping": 1.0, 
+    "zero_optimization": {
+        "stage": 2, 
+        "contiguous_gradients": false, 
+        "overlap_comm": true, 
+        "reduce_scatter": true, 
+        "reduce_bucket_size": 5.000000e+07, 
+        "allgather_bucket_size": 5.000000e+07, 
+        "cpu_offload": true
+    }, 
+    "zero_allow_untested_optimizer": true, 
+    "fp16": {
+        "enabled": true, 
+        "loss_scale": 0, 
+        "loss_scale_window": 1000, 
+        "hysteresis": 2, 
+        "min_loss_scale": 1
+    }, 
+    "optimizer": {
+        "type": "Adam", 
+        "params": {
+            "lr": 5e-06, 
+            "betas": [0.9, 0.95], 
+            "eps": 1e-08, 
+            "weight_decay": 0.01
+        }
+    }, 
+    "activation_checkpointing": {
+        "partition_activations": false, 
+        "contiguous_memory_optimization": false
+    }, 
+    "wall_clock_breakdown": false
+}
+learning rate decaying style linear, ratio 10.0
+WARNING: could not find the metadata file /data/wang/models/model_save/checkpoints/latest_checkpointed_iteration.txt 
+Try to directly load the checkpoint from the directory
+global rank 0 is loading pretrained model /data/wang/models/model_save/checkpoints/mp_rank_00_model_states.pt
+WARNING: could not find the metadata file ../model_save/checkpoints/latest_checkpointed_iteration.txt 
+    will not load any checkpoints and will start from random
+arguments:
+  transformer_xl ............... False
+  pretrained_bert .............. False
+  encoder_decoder .............. False
+  attention_dropout ............ 0.1
+  num_attention_heads .......... 16
+  hidden_size .................. 1024
+  intermediate_size ............ None
+  num_layers ................... 24
+  layernorm_epsilon ............ 1e-05
+  hidden_dropout ............... 0.1
+  output_dropout ............... 0.1
+  max_position_embeddings ...... 1024
+  vocab_size ................... 50048
+  deep_init .................... False
+  make_vocab_size_divisible_by . 128
+  cpu_optimizer ................ False
+  cpu_torch_adam ............... False
+  fp16 ......................... True
+  fp32_embedding ............... False
+  fp32_layernorm ............... False
+  fp32_tokentypes .............. False
+  fp32_allreduce ............... False
+  hysteresis ................... 2
+  loss_scale ................... None
+  loss_scale_window ............ 1000
+  min_scale .................... 1
+  attention_scale .............. 1.0
+  experiment_name .............. blocklm-large-chinese-AFQMC_01-19-02-00
+  batch_size ................... 4
+  gradient_accumulation_steps .. 2
+  weight_decay ................. 0.01
+  checkpoint_activations ....... True
+  checkpoint_num_layers ........ 1
+  deepspeed_activation_checkpointing  False
+  epochs ....................... 10
+  clip_grad .................... 1.0
+  train_iters .................. 149230
+  label_smoothing .............. 0.0
+  log_interval ................. 100
+  summary_dir .................. 
+  seed ......................... 1234
+  reset_position_ids ........... False
+  reset_attention_mask ......... False
+  lr_decay_iters ............... None
+  lr_decay_style ............... linear
+  lr_decay_ratio ............... 0.1
+  lr ........................... 5e-06
+  warmup ....................... 0.1
+  switch_linear ................ False
+  save ......................... /data/wang/models/model_save/checkpoints/blocklm-large-chinese-AFQMC_01-19-02-00
+  new_save_directory ........... False
+  save_epoch ................... 100000
+  save_interval ................ 100
+  no_save_optim ................ False
+  no_save_rng .................. False
+  load ......................... ../model_save/checkpoints/
+  no_load_optim ................ True
+  no_load_rng .................. False
+  no_load_lr_scheduler ......... True
+  no_deepspeed_load ............ False
+  finetune ..................... True
+  resume_dataloader ............ False
+  distributed_backend .......... nccl
+  DDP_impl ..................... torch
+  local_rank ................... 0
+  block_lm ..................... True
+  masked_lm .................... False
+  bert_prob .................... 0.5
+  gpt_infill_prob .............. 0.5
+  gpt_min_ratio ................ 0.5
+  gap_sentence_prob ............ 0.0
+  gap_sentence_ratio ........... 0.15
+  avg_block_length ............. 3
+  short_seq_prob ............... 0.0
+  single_span_prob ............. 0.0
+  task_mask .................... True
+  no_shuffle_block ............. False
+  no_block_position ............ False
+  sentinel_token ............... False
+  block_mask_prob .............. 0.0
+  context_mask_ratio ........... 0.0
+  random_position .............. False
+  eval_batch_size .............. 16
+  eval_iters ................... 100
+  eval_interval ................ 100
+  eval_epoch ................... 1
+  eval_seq_length .............. None
+  eval_max_preds_per_seq ....... None
+  overlapping_eval ............. 32
+  temperature .................. 1.0
+  top_p ........................ 0.0
+  top_k ........................ 0
+  out_seq_length ............... 256
+  num_beams .................... 1
+  length_penalty ............... 0.0
+  no_repeat_ngram_size ......... 0
+  min_tgt_length ............... 0
+  select_topk .................. False
+  blank_maskratio .............. 0.1
+  model_parallel_size .......... 1
+  shuffle ...................... False
+  filter_english ............... False
+  train_data ................... None
+  valid_data ................... None
+  test_data .................... None
+  data_dir ..................... /data/wang/datasets/finetune_data/lcqmc
+  input_data_sizes_file ........ sizes.txt
+  delim ........................ ,
+  text_key ..................... sentence
+  eval_text_key ................ None
+  split ........................ 1000,1,1
+  no_lazy_loader ............... False
+  half_lazy_loader ............. False
+  loader_scatter ............... None
+  loose_json ................... False
+  presplit_sentences ........... False
+  num_workers .................. 1
+  tokenizer_model_type ......... None
+  tokenizer_path ............... tokenizer.model
+  tokenizer_type ............... ChineseSPTokenizer
+  fix_command_token ............ True
+  no_pre_tokenize .............. False
+  cache_dir .................... None
+  use_tfrecords ................ False
+  seq_length ................... 256
+  mem_length ................... 0
+  max_preds_per_seq ............ None
+  non_sentence_start ........... 0.0
+  sample_one_document .......... False
+  load_splits .................. None
+  save_splits .................. None
+  save_test_data ............... None
+  multi_task_data .............. None
+  multi_task_ratio ............. 0.0
+  multi_seq_length ............. None
+  multi_batch_size ............. None
+  task ......................... afqmc
+  load_pretrained .............. /data/wang/models/model_save/checkpoints
+  pool_token ................... cls
+  cloze_eval ................... True
+  multi_token .................. False
+  segment_length ............... 0
+  loss_func .................... cross_entropy
+  block_lm_ratio ............... 0.0
+  adapet ....................... False
+  pattern_id ................... 0
+  fast_decode .................. False
+  few_superglue ................ False
+  eval_valid ................... False
+  validation_metric ............ None
+  unidirectional ............... False
+  src_seq_length ............... None
+  tgt_seq_length ............... None
+  adam_beta1 ................... 0.9
+  adam_beta2 ................... 0.999
+  adam_eps ..................... 1e-08
+  optimizer .................... adam
+  wsc_negative ................. False
+  overwrite .................... True
+  no_validation ................ False
+  continuous_prompt ............ False
+  num_prompt_tokens ............ 0
+  prompt_func .................. lstm
+  freeze_transformer ........... False
+  tune_prefix_layers ........... None
+  prefix_prompt ................ 0
+  prompt_init .................. False
+  deepspeed .................... True
+  deepspeed_config ............. config_tasks/config_blocklm_10B.json
+  deepscale .................... False
+  deepscale_config ............. None
+  deepspeed_mpi ................ False
+  cuda ......................... True
+  rank ......................... 0
+  world_size ................... 4
+  dynamic_loss_scale ........... True
+  master_ip .................... 127.0.0.1
+  master_port .................. 21171
+  eod_token .................... 50000
+  variable_num_choices ......... False
+  train_iters_per_epoch ........ 14923
+  iteration .................... 0
+  log_dir ...................... ../logs/runs/blocklm-large-chinese-AFQMC_01-19-02-00
+done with setups ...
+time (ms) | train/valid/test dataset/dataloder: 2502.11 | callback function: 145.71 | model and optimizer: 13693.00 | pretrained checkpoint: 16730.97
+training ...
+working on epoch 0 ...
+[2022-01-19 02:00:52,695] [INFO] [checkpointing.py:547:forward] Activation Checkpointing Information
+[2022-01-19 02:00:52,695] [INFO] [checkpointing.py:548:forward] ----Partition Activations False, CPU CHECKPOINTING False
+[2022-01-19 02:00:52,695] [INFO] [checkpointing.py:551:forward] ----contiguous Memory Checkpointing False with None total layers
+[2022-01-19 02:00:52,695] [INFO] [checkpointing.py:554:forward] ----Synchronization False
+[2022-01-19 02:00:52,695] [INFO] [checkpointing.py:555:forward] ----Profiling time in checkpointing False
+[2022-01-19 02:00:54,523] [INFO] [stage_1_and_2.py:1631:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 4294967296, reducing to 4294967296
+[2022-01-19 02:00:55,126] [INFO] [stage_1_and_2.py:1631:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 4294967296, reducing to 2147483648.0
+[2022-01-19 02:00:55,721] [INFO] [stage_1_and_2.py:1631:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 2147483648.0, reducing to 1073741824.0
+[2022-01-19 02:00:56,316] [INFO] [stage_1_and_2.py:1631:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 1073741824.0, reducing to 536870912.0
+[2022-01-19 02:00:56,914] [INFO] [stage_1_and_2.py:1631:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 536870912.0, reducing to 268435456.0
+[2022-01-19 02:00:57,502] [INFO] [stage_1_and_2.py:1631:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 268435456.0, reducing to 134217728.0
+[2022-01-19 02:00:58,091] [INFO] [stage_1_and_2.py:1631:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 134217728.0, reducing to 67108864.0
+[2022-01-19 02:00:58,679] [INFO] [stage_1_and_2.py:1631:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 67108864.0, reducing to 33554432.0
+[2022-01-19 02:00:59,270] [INFO] [stage_1_and_2.py:1631:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 33554432.0, reducing to 16777216.0
+[2022-01-19 02:00:59,873] [INFO] [stage_1_and_2.py:1631:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 16777216.0, reducing to 8388608.0
+[2022-01-19 02:01:00,467] [INFO] [stage_1_and_2.py:1631:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 8388608.0, reducing to 4194304.0
+[2022-01-19 02:01:01,061] [INFO] [stage_1_and_2.py:1631:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 4194304.0, reducing to 2097152.0
+[2022-01-19 02:01:01,649] [INFO] [stage_1_and_2.py:1631:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 2097152.0, reducing to 1048576.0
+[2022-01-19 02:01:02,246] [INFO] [stage_1_and_2.py:1631:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 1048576.0, reducing to 524288.0
+[2022-01-19 02:01:02,843] [INFO] [stage_1_and_2.py:1631:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 524288.0, reducing to 262144.0
+[2022-01-19 02:01:03,459] [INFO] [stage_1_and_2.py:1631:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 262144.0, reducing to 131072.0
+[2022-01-19 02:01:04,053] [INFO] [stage_1_and_2.py:1631:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 131072.0, reducing to 65536.0
+[2022-01-19 02:01:04,626] [INFO] [stage_1_and_2.py:1631:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 65536.0, reducing to 32768.0
+[2022-01-19 02:01:06,836] [INFO] [stage_1_and_2.py:1631:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 32768.0, reducing to 16384.0
+[2022-01-19 02:01:12,678] [INFO] [timer.py:181:stop] 0/50, SamplesPerSec=42.59127363904755
+[2022-01-19 02:01:41,200] [INFO] [stage_1_and_2.py:1631:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 16384.0, reducing to 8192.0
+[2022-01-19 02:01:41,201] [INFO] [logging.py:69:log_dist] [Rank 0] step=50, skipped=20, lr=[2.010319640822891e-08, 2.010319640822891e-08], mom=[[0.9, 0.95], [0.9, 0.95]]
+[2022-01-19 02:01:41,201] [INFO] [timer.py:181:stop] 0/100, SamplesPerSec=33.80331112017867
+time (ms) | forward: 36.78 | backward: 269.82 | allreduce: 0.00 | optimizer: 175.13 | batch generator: 1.40
+ iteration      100/  149230 | elapsed time per iteration (ms): 490.7 | learning rate 2.010E-08 | lm loss 1.005854E+00 | loss scale 8192.0 |
+----------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
+ validation loss at iteration 100 | LM loss: 1.245315E+00 | LM PPL: 3.474028E+00 | BERT loss: 1.245315E+00
+-----------------------------------------------------------------------------------------------------------

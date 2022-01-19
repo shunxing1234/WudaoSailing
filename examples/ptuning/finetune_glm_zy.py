@@ -20,10 +20,10 @@ import numpy as np
 import logging
 import mpu
 from arguments import get_args
-from data_utils.tokenizations import ptuning_get_tokenizer
+from dataprocessing.tokenizations import ptuning_get_tokenizer
 
 from model.base_model import BaseModel, BaseMixin, non_conflict
-from train_utils.deepspeed_training import training_main
+from training.deepspeed_training import training_main
 
 from model import GLMModel
 from nets.attentions import standard_attention

@@ -2,9 +2,9 @@
 from utils.act_fun import *
 from utils.optimizers import *
 from utils.adversarial import *
-from data_utils.dataloader import *
-from data_utils.tokenizations.tokenizers import *
-from data_utils.BertDataset import BertDataset
+from dataprocessing.dataloader import *
+from dataprocessing.tokenizations.tokenizers import *
+from dataprocessing.BertDataset import BertDataset
 from nets.BertEmbeddings import WordPosSegEmbedding
 from nets.encoders import TransformerEncoder
 from nets.targets import BertTarget, AlbertTarget, MlmTarget

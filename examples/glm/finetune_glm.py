@@ -19,18 +19,18 @@ import mpu
 
 import torch
 import torch.utils.data
-from data_utils.configure_data import prepare_tokenizer
+from dataprocessing.configure_data import prepare_tokenizer
 
 from utils.utils import print_rank_0
 from utils.utils import Timers
-from train_utils.trainers import  train_step
+from training.trainers import  train_step
 from setup_model import setup_model_and_optimizer
 from utils.saver import  save_checkpoint
 from utils.loader import load_checkpoint, load_pretrained
 from utils.reports import report_iteration_metrics
 from pretrain_glm import evaluate_and_print_results
-from train_utils.train_init import initialize_distributed, set_random_seed
-from data_utils.configure_data import make_data_loader
+from training.train_init import initialize_distributed, set_random_seed
+from dataprocessing.configure_data import make_data_loader
 
 
 def process_batch(batch, args):

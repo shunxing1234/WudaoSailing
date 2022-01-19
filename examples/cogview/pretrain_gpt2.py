@@ -16,12 +16,12 @@ import argparse
 import numpy as np
 sys.path.append("../..")
 import  mpu
-from data_utils.tokenizations import get_tokenizer
+from dataprocessing.tokenizations import get_tokenizer
 from arguments import get_args
 from model.base_model import BaseModel
-from train_utils.deepspeed_training import training_main
-from data_utils import BinaryDataset
-from data_utils.tokenizations.cogview import TextCodeTemplate
+from training.deepspeed_training import training_main
+from dataprocessing import BinaryDataset
+from dataprocessing.tokenizations.cogview import TextCodeTemplate
 from nets.cross_entropy import vocab_parallel_cross_entropy
 
 def get_masks_and_position_ids(data,

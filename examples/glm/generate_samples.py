@@ -26,9 +26,9 @@ from datetime import datetime
 from arguments import get_args
 from pretrain_glm import initialize_distributed
 from pretrain_glm import set_random_seed
-from data_utils.train_data import get_masks_and_position_ids
+from dataprocessing.train_data import get_masks_and_position_ids
 from utils.loader import load_checkpoint
-from data_utils.configure_data import prepare_tokenizer
+from dataprocessing.configure_data import prepare_tokenizer
 from utils.generation_utils import BeamSearchScorer
 import mpu
 import pandas as pd

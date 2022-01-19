@@ -2,7 +2,7 @@
 import sys
 root_dir='/data/wang/models/wudao'
 sys.path.append(root_dir)
-from data_utils.BertDataset import BertDataset
+from dataprocessing.BertDataset import BertDataset
 from nets.BertEmbeddings import WordPosSegEmbedding
 from nets.encoders import TransformerEncoder
 from nets.targets import BertTarget
@@ -10,7 +10,7 @@ from model_bert import Model
 import glob
 from utils.struct_nav import str2tokenizer, str2embedding, str2encoder, str2target
 from arguments import *
-import train_utils.BertTrainer as trainer
+import training.BertTrainer as trainer
 
 isTEST = 1  # 测试模式，模型会读取./data/train_data/test.json作为输入数据
 model_config_path = "./config/tiny_config.json"  # 加载预先调好的模型参数，默认为BERT基础版。如需自行设置参数请将此变量设置为空值""

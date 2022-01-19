@@ -30,7 +30,7 @@ from configure_data import prepare_tokenizer
 from generation_utils import BeamSearchScorer
 import mpu
 import pandas as pd
-from train_utils import get_model
+from training import get_model
 
 
 def setup_model(args):

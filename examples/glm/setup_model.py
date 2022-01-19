@@ -5,9 +5,9 @@ from modeling_glm import GLMModel
 from downstream import GLMForMultiTokenCloze, GLMForMultiTokenClozeFast, GLMForSingleTokenCloze, GLMForSequenceClassification
 from utils.prints import print_rank_0 
 from model import PyTorchDistributedDataParallel as TorchDDP, DistributedDataParallel as LocalDDP
-from train_utils.optimizers import get_optimizer_param_groups,get_optimizer
+from training.optimizers import get_optimizer_param_groups,get_optimizer
 from fp16 import FP16_Module
-from train_utils.schedulers import get_learning_rate_scheduler
+from training.schedulers import get_learning_rate_scheduler
 
 def build_model(args, model_type=None, multi_token=True, num_labels=None, spell_length=None):
     """Build the model."""

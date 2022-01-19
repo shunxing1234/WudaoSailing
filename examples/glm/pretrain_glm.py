@@ -25,7 +25,7 @@ import numpy as np
 import torch
 from contextlib import ExitStack
 from arguments import get_args
-from data_utils.configure_data import   prepare_tokenizer, build_multi_task_dataset
+from dataprocessing.configure_data import   prepare_tokenizer, build_multi_task_dataset
 from setup_model import setup_model_and_optimizer
 from utils.reports import Timers
 from utils.saver import save_checkpoint
@@ -33,12 +33,12 @@ from utils.loader import load_checkpoint
 from utils.prints import print_and_save_args, print_rank_0
 from utils.utils import get_sample_writer, get_log_dir
 from utils.prints import print_rank_0
-from train_utils.forward import forward_step
-from data_utils.train_data import get_train_val_test_data 
-from train_utils.evaluate import evaluate_and_print_results 
-from train_utils.train_init import initialize_distributed,set_random_seed
+from training.forward import forward_step
+from dataprocessing.train_data import get_train_val_test_data
+from training.evaluate import evaluate_and_print_results
+from training.train_init import initialize_distributed,set_random_seed
 import pathlib
-from train_utils.trainers import train
+from training.trainers import train
 
 def main():
     """Main training program."""
