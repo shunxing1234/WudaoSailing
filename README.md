@@ -1,4 +1,4 @@
-# GLM
+# WudaoSailing
 
 WudaoSailing is a package for pretraining chinese Language Model and finetune tasks. Now it supports GLM, Bert, T5, Cogview and Roberta models.
 
@@ -20,13 +20,17 @@ We prepare two docker images based on CUDA 10.2 and CUDA 11.2. You can build ima
 ### Clone this repo
   ```shell
   git clone https://github.com/wangguojim/WudaoSailing
-  cd GLM
+  cd WudaoSailing
   ```
 
 ## Usage
+
+We show some examples of 
+
+### GLM
 We provide scripts for finetuning GLM on some downstream tasks.
 
-### SuperGLUE
+#### SuperGLUE
 
 - Download the [SuperGlue](https://super.gluebenchmark.com/tasks) data and check the experiment setup in 
   [examples/glm/scripts/ds_finetune_superglue.sh](xamples/glm/scripts/ds_finetune_superglue.sh). Note that `DATA_ROOT, CHECKPOINT_PATH, SAVE_PATH` 
@@ -36,23 +40,21 @@ We provide scripts for finetuning GLM on some downstream tasks.
 - Run the following script (use the COPA dataset as an example)
 
 ```
-cd examples/glm/ &&
+cd examples/glm/ 
 bash scripts/ds_finetune_superglue.sh\
      config/model_blocklm_large_chinese.sh\
      config_tasks/task_afqmc.sh
 ```
 - We also implement [P-Tuning](https://arxiv.org/abs/2103.10385) in our code. Run the following script to integrate p-tuning:
 ```shell
-cd examples/glm/ &&
-bash scripts/ds_finetune_superglue_prompt.sh \
-     config_tasks/model_blocklm_10B.sh \
-     config_tasks/task_copa.sh
+cd examples/ptuning/ 
+bash finetune_zy.sh
 ```
   
 - To apply GLM to a new NLU dataset with cloze-filling finetuning, implement a `DataProcessor` in
-  [tasks/superglue/dataset.py](tasks/superglue/dataset.py) for data loading and add a `PVP` in 
-  [tasks/superglue/pvp.py](tasks/superglue/pvp.py) for the cloze question. More details can be found 
-  [here](tasks/superglue/README.md).
+  [examples/glm/tasks/superglue/dataset.py](examples/glm/tasks/superglue/dataset.py) for data loading and add a `PVP` in 
+  [examples/glm/tasks/superglue/pvp.py](examples/glm/tasks/superglue/pvp.py) for the cloze question. More details can be found 
+  [here](examples/glm/tasks/superglue/README.md).
 
 ### Text Summarization
 
