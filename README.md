@@ -7,21 +7,19 @@ WudaoSailing is a package for pretraining chinese Language Model and finetune ta
 
 ## Get Started
 ### Docker Image
-We prepare two docker images based on CUDA 10.2 and CUDA 11.2. You can pull the pre-built images from Docker Hub and run with docker v19.03+
+We prepare two docker images based on CUDA 10.2 and CUDA 11.2. You can build images from the docker file [docs/docker/cuda102.dockerfile](docs/docker/cuda102.dcokerfile) or pull the pre-built images from Docker Hub and run with docker v19.03+
   ```shell
-  docker run --gpus all --rm -it --ipc=host zxdu20/glm-cuda102
+  nvidia-docker run -id  --hostname=V100  --network=host  --ipc=host --shm-size=16gb --name=deepspeed-cuda   -e NVIDIA_VISIBLE_DEVICES=0,1,2,3 -v /DATA/disk1/docker/containers/:/data deepspeed/cuda102:lastest
   ```
-  or replace `glm-cuda102` with `glm-cuda112`.
+  or replace `cuda102` with `cuda112`.
 
-  You can also modify the image according to your requirements in [docker/cuda102.dockerfile](docker/cuda102.dockerfile) and build the image yourself
   ```shell
-    docker build -f cuda102.dockerfile . -t glm-cuda102
+    docker build -f cuda102.dockerfile  -t deepspeed/cuda102 .
   ```
-### Manual Installation 
-Please first install PyTorch (we use 1.7.0) and [apex](https://github.com/NVIDIA/apex), and then install other dependencies by `pip install -r requirements.txt`
+
 ### Clone this repo
   ```shell
-  git clone https://github.com/THUDM/GLM
+  git clone https://github.com/wangguojim/WudaoSailing
   cd GLM
   ```
 
@@ -31,19 +29,21 @@ We provide scripts for finetuning GLM on some downstream tasks.
 ### SuperGLUE
 
 - Download the [SuperGlue](https://super.gluebenchmark.com/tasks) data and check the experiment setup in 
-  [scripts/ds_finetune_superglue.sh](scripts/ds_finetune_superglue.sh). Note that `DATA_ROOT, CHECKPOINT_PATH, SAVE_PATH` 
+  [examples/glm/scripts/ds_finetune_superglue.sh](xamples/glm/scripts/ds_finetune_superglue.sh). Note that `DATA_ROOT, CHECKPOINT_PATH, SAVE_PATH` 
   need to be changed to your local path. You may also change the `batch-size` and `nproc_per_node` according to your 
   available hardware.
 
 - Run the following script (use the COPA dataset as an example)
 
 ```
-bash scripts/ds_finetune_superglue.sh \
-     config_tasks/model_blocklm_10B.sh \
-     config_tasks/task_copa.sh
+cd examples/glm/ &&
+bash scripts/ds_finetune_superglue.sh\
+     config/model_blocklm_large_chinese.sh\
+     config_tasks/task_afqmc.sh
 ```
 - We also implement [P-Tuning](https://arxiv.org/abs/2103.10385) in our code. Run the following script to integrate p-tuning:
 ```shell
+cd examples/glm/ &&
 bash scripts/ds_finetune_superglue_prompt.sh \
      config_tasks/model_blocklm_10B.sh \
      config_tasks/task_copa.sh
@@ -134,25 +134,8 @@ Run the following script to pre-train the GLM-Large model
 bash scripts/ds_pretrain_nvidia.sh config/ds_block_large.sh
 ```
 
-The script [scripts/ds_pretrain_nvidia.sh](scripts/ds_pretrain_nvidia.sh) launches the training program with DeepSpeed. You should change `NUM_WORKERS` and `NUM_GPUS_PER_WORKER` to the number of workers and the number of gpus per worker. Also change `HOST_FILE_PATH` to the path to an OpenMPI-style hostfile. More details about DeepSpeed launcher can be found [here](https://www.deepspeed.ai/getting-started/#resource-configuration-multi-node).
+The script [examples/glm/config/ds_pretrain_nvidia.sh](examples/glm/config/ds_pretrain_nvidia.sh) launches the training program with DeepSpeed. You should change `NUM_WORKERS` and `NUM_GPUS_PER_WORKER` to the number of workers and the number of gpus per worker. Also change `HOST_FILE_PATH` to the path to an OpenMPI-style hostfile. More details about DeepSpeed launcher can be found [here](https://www.deepspeed.ai/getting-started/#resource-configuration-multi-node).
 
 The file [config/ds_block_large.sh](config/ds_block_large.sh) defines the hyperparameters for pretraining. Most of the arguments are fairly self-explanatory. Specifically, `--train-data` can be multiple keywords defined in `NAMED_CORPORA` in [data_utils/corpora.py](data_utils/corpora.py). The hyperparameters of the optimizer are defined in the corresponding json file under `config`. The semantics of the json file can be found [here](https://www.deepspeed.ai/docs/config-json).
 
-## Citation
-Please cite our paper if you find this code useful for your research:
-```
-@article{DBLP:journals/corr/abs-2103-10360,
-  author    = {Zhengxiao Du and
-               Yujie Qian and
-               Xiao Liu and
-               Ming Ding and
-               Jiezhong Qiu and
-               Zhilin Yang and
-               Jie Tang},
-  title     = {All {NLP} Tasks Are Generation Tasks: {A} General Pretraining Framework},
-  journal   = {CoRR},
-  volume    = {abs/2103.10360},
-  year      = {2021},
-  url       = {https://arxiv.org/abs/2103.10360}
-}
-```
+ 
