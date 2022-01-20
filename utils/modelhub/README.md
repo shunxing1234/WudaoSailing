@@ -3,7 +3,7 @@
 modelhub is a tool for quick start.
 
 
-## Get Started
+## download files
 
 The [utils/modelhub/client.py](utils/modelhub/client.py) contains the API for downing models and files.
 
@@ -17,13 +17,13 @@ if __name__=='__main__':
   
 also, one can download model by model_url as
   ```python
-from cutils.modelhub.lient import zip_from_url
+from client import zip_from_url
 zip_from_url(url,to_path='./checkpoints/')      
   ```
 [zip_from_url](utils/modelhub/client.py) support downing zip files and tar.gz files and unzip files to path "to_path", for other type files, please use
 [download_from_url](utils/modelhub/client.py) as
   ```python
-from cutils.modelhub.lient import download_from_url
+from client import download_from_url
 download_from_url(url,to_path='./checkpoints/')      
   ```
 
