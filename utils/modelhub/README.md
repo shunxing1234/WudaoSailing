@@ -12,7 +12,7 @@ To down the model [glm-10b-en], run
 from utils.modelhub.client import DataPull       
 if __name__=='__main__':
     datadown=DataPull()
-    datadown.pull_model("glm-10b-en")         
+    datadown.pull_model("glm-10b-en",to_path='./checkpoints/')         
   ```
   
 also, one can download model by model_url as
